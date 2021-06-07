@@ -21,6 +21,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Drag Floating Windows with Mouse
+
 floating_modifier $mod
 
 # Start Terminal (alacritty)
@@ -36,6 +37,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show run
 
 # Change Focus
+
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -50,7 +52,7 @@ bindsym $mod+Shift+l move right
 
 # Swap Between Horizontal and Vertical Orientation
 
-bindsym $mod+h split h
+bindsym $mod+b split h
 bindsym $mod+v split v
 
 # Enter Fullscreen Mode
