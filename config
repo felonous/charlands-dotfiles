@@ -5,7 +5,7 @@ set $mod Mod4
 
 # Font for Window Titles and Bar
 
-font pango:monospace 8
+font terminus:terminus
 
 # Screen Before Suspend & NetworkManager
 
@@ -26,7 +26,7 @@ floating_modifier $mod
 
 # Start Terminal (alacritty)
 
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id st
 
 # Kill Focused Window
 
@@ -136,7 +136,8 @@ mode "resize" {
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
-	
+
+        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
@@ -170,6 +171,7 @@ mode "$mode_gaps" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 mode "$mode_gaps_inner" {
         bindsym plus  gaps inner current plus 5
         bindsym minus gaps inner current minus 5
