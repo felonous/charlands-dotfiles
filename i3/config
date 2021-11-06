@@ -14,9 +14,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
-# Flatpak Binds
-bindsym $mod+Shift+s exec flatpak run com.valvesoftware.Steam
-
 # Drag Floating Windows with Mouse
 floating_modifier $mod
 
@@ -107,6 +104,14 @@ bindsym $mod+Shift+r restart
 # Exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
+# Bar
+bar {
+	status_command i3blocks 
+	position bottom 
+}
+
+for_window [class="^.*"] border pixel 2
+
 # Resize
 mode "resize" {
         
@@ -122,21 +127,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Bar
-bar {
-	status_command i3blocks 
-	position bottom 
-}
-
-for_window [class="^.*"] border pixel 2
-
 # Gaps
 gaps inner 15 
 gaps outer 25
 
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
@@ -144,30 +138,23 @@ mode "$mode_gaps" {
         bindsym i      mode "$mode_gaps_inner"
         bindsym Return mode "default"
         bindsym Escape mode "default"
+	bindsym $mod+g mode "default"
 }
 
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 10 
-        bindsym minus gaps inner current minus 10 
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 10
-        bindsym Shift+minus gaps inner all minus 10 
-        bindsym Shift+0     gaps inner all set 0
-
+        bindsym k      gaps inner current plus 10 
+        bindsym j      gaps inner current minus 10 
+        bindsym 0      gaps inner current set 0
         bindsym Return mode "default"
         bindsym Escape mode "default"
+	bindsym $mod+g mode "default"
 }
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 10 
-        bindsym minus gaps outer current minus 10
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 10
-        bindsym Shift+minus gaps outer all minus 10
-        bindsym Shift+0     gaps outer all set 0
-
+        bindsym k      gaps outer current plus 10 
+        bindsym j      gaps outer current minus 10 
+        bindsym 0      gaps outer current set 0
         bindsym Return mode "default"
         bindsym Escape mode "default"
+	bindsym $mod+g mode "default"
 }
 
