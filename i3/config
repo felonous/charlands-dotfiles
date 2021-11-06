@@ -1,5 +1,4 @@
-# Matthew Charland's i3 Config
-# Simple Config using Vim Keys + Gaps
+# Quinn Charland's i3-Gaps Config
 
 set $mod Mod4
 
@@ -14,11 +13,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
+# Application Binds
+bindsym $mod+Shift+b exec --no-startup-id firefox
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal 
+
 # Drag Floating Windows with Mouse
 floating_modifier $mod
-
-# Start Terminal 
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal 
 
 # Kill Focused Window
 bindsym $mod+Shift+q kill
@@ -104,14 +104,6 @@ bindsym $mod+Shift+r restart
 # Exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# Bar
-bar {
-	status_command i3blocks 
-	position bottom 
-}
-
-for_window [class="^.*"] border pixel 2
-
 # Resize
 mode "resize" {
         
@@ -120,41 +112,26 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+        bindsym space mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
+# Bar
+bar {
+	status_command i3blocks 
+	position bottom 
+}
+
+for_window [class="^.*"] border pixel 2
+
 # Gaps
+
 gaps inner 15 
 gaps outer 25
 
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-	bindsym $mod+g mode "default"
-}
-
-mode "$mode_gaps_inner" {
-        bindsym k      gaps inner current plus 10 
-        bindsym j      gaps inner current minus 10 
-        bindsym 0      gaps inner current set 0
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-	bindsym $mod+g mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym k      gaps outer current plus 10 
-        bindsym j      gaps outer current minus 10 
-        bindsym 0      gaps outer current set 0
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-	bindsym $mod+g mode "default"
-}
+bindsym Ctrl+j gaps outer current plus 15 
+bindsym Ctrl+k gaps outer current minus 15 
+bindsym Ctrl+Shift+j gaps inner current plus 15
+bindsym Ctrl+Shift+k gaps inner current minus 15
 
