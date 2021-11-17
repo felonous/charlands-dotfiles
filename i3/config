@@ -1,4 +1,4 @@
-# Quinn Charland's i3-Gaps Config
+# Quin Charland's i3-Gaps Config
 
 set $mod Mod4
 
@@ -123,7 +123,11 @@ bar {
 	position bottom 
 }
 
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 2 
+client.focused          #333333 #ff0000 #ffffff #ff0000
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
 
 # Gaps
 
@@ -132,6 +136,6 @@ gaps outer 25
 
 bindsym Ctrl+j gaps outer current plus 15 
 bindsym Ctrl+k gaps outer current minus 15 
-bindsym Ctrl+Shift+j gaps inner current plus 15
-bindsym Ctrl+Shift+k gaps inner current minus 15
+bindsym Shift+j gaps inner current plus 15
+bindsym Shift+k gaps inner current minus 15
 
